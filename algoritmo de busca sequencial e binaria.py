@@ -70,7 +70,7 @@ def buscabinaria(lista,chave):
 buscabinaria(lista,14)
         
 '''----------------------------------------------------------------------------'''
-''' Exercício prático 1:
+''' Exercício prático 1: NÃO FINALIZADO
     Iremos refazer as funções de busca sequencial e busca binária
 assumindo que a lista possui chaves que podem ocorrer
 múltiplas vezes na lista. Neste caso, retornaremos uma

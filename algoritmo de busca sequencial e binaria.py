@@ -1,3 +1,34 @@
+''' Antes de qualquer coisa vamos fazer o quick_sort'''
+
+def quicksort(arr, left, right):
+    if left < right:
+        partition_pos = partition(arr, left, right)
+        quicksort(arr, left, partition_pos - 1)
+        quicksort(arr, partition_pos + 1, right)
+        
+def partition(arr, left, right):
+    i = left
+    j = right -1
+    pivot = arr[right]
+    
+    while i < j:
+        while i < right and arr[i] < pivot:
+            i += 1
+        
+        while j > left and arr[j] >= pivot:
+            j -= 1
+            
+        if i < j:
+            arr[i], arr[j] = arr[j], arr[i]
+    
+    if arr[i] > pivot:
+        arr[i], arr[right] = arr[right], arr[i]
+    
+    return i
+
+''' -----------------------------------------------------'''
+
+
 ''' Busca Sequencial - (n+1)/2 = número de tentativas
 • A busca sequencial é o algoritmo mais simples de busca:
 • Percorra a lista comparando a chave com os valores dos
@@ -7,7 +38,6 @@ correspondente na lista.
 • Se a lista toda foi percorrida e a chave não for encontrada, retorne
 o valor −1'''
 
-import numpy as np 
 
 def buscaSequencial(lista, chave): 
     indice = 0
@@ -18,8 +48,9 @@ def buscaSequencial(lista, chave):
     return -1
 
 chave = 24
-lista = [20, 5, 15, 24, 67, 45, 1, 76, 21, 11] # se a lista não estiver ordenada, use lista.sort para ordená-la em ordem crescente
-
+lista = [20, 5, 15, 24, 67, 45, 1, 76, 21, 11] # se a lista não estiver ordenada, use o quick_sort
+quicksort(lista, 0, len(lista) - 1)
+print(lista)
 pos = buscaSequencial(lista, chave)
 
 if pos != -1:
@@ -67,10 +98,12 @@ def buscabinaria(lista,chave):
             
     return print("A chave",chave, "não se encontra na lista")
 
+quicksort(lista, 0, len(lista) - 1)
+print(lista)
 buscabinaria(lista,14)
         
 '''----------------------------------------------------------------------------'''
-''' Exercício prático 1: NÃO FINALIZADO
+''' Exercício prático 1: NAO FINALIZADO
     Iremos refazer as funções de busca sequencial e busca binária
 assumindo que a lista possui chaves que podem ocorrer
 múltiplas vezes na lista. Neste caso, retornaremos uma
@@ -79,7 +112,8 @@ chave não for encontrada na lista, retornaremos uma lista vazia.'''
 
 
 lista = [1, 5, 10, 13, 15, 13, 24, 38, 13, 54, 60]
-lista.sort() # aqui temos a lista ordenada (podemos usar sorted(lista) tbm)
+quicksort(lista, 0, len(lista) - 1)
+print(lista)
 chave = 13 # essa é nossa chave repetida
 
 def buscaSequencial(lista, chave): 

@@ -54,7 +54,7 @@ print(lista)
 pos = buscaSequencial(lista, chave)
 
 if pos != -1:
-    print("Posição da chave", chave, "na lista:", pos)
+    print("Posição da chave", chave, "na lista:", pos + 1)
 else:
     print("A chave", chave, "não se encontra na lista")
 # Posição da chave 45 na lista: 5

@@ -1,5 +1,5 @@
 import random as rd
-
+import time
 ''' quick-sort'''
 
 def quicksort(arr, left, right):
@@ -60,7 +60,12 @@ rd.shuffle(lista100) # embaralha os elementos da nossa lista de 100 números
 lista10 = lista100[0:10]
 quicksort(lista10, 0, len(lista10)-1)
 print(lista10)
+
+inicio = time.time() # grava o tempo inicial
 buscabinaria(lista10, lista10[9])
+fim = time.time() # grava o tempo final
+tempo_total = fim - inicio # calcula o tempo total decorrido
+print(f"Tempo de execução: {tempo_total} segundos")
 
 ''' 20 elementos na lista''' # vamos selecionar os 20 primeiros elementos da lista de 100 números
 
@@ -123,6 +128,10 @@ buscabinaria(lista90, lista90[89])
 
 quicksort(lista100,0, len(lista100)-1) # colocando-a em ordem
 print(lista100)
-buscabinaria(lista100, lista100[99])
 
+inicio = time.time() # grava o tempo inicial
+buscabinaria(lista100, lista100[99])
+fim = time.time() # grava o tempo final
+tempo_total = fim - inicio # calcula o tempo total decorrido
+print(f"Tempo de execução: {tempo_total} segundos")
 

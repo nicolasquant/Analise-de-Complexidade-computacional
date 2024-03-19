@@ -1,3 +1,4 @@
+import time
 import random as rd
 
 def quicksort(arr, left, right):
@@ -55,7 +56,12 @@ rd.shuffle(lista100) # embaralha os elementos da nossa lista de 100 números
 lista10 = lista100[0:10]
 quicksort(lista10, 0, len(lista10)-1)
 print(lista10)
+
+inicio = time.time() # grava o tempo inicial
 buscaSequencial(lista10, lista10[9]) # lembremos que o pior caso a ser tratado na busca sequencial ocorre quando o número a ser achado é o último
+fim = time.time() # grava o tempo final
+tempo_total = fim - inicio # calcula o tempo total decorrido
+print(f"Tempo de execução: {tempo_total} segundos")
 
 ''' 20 elementos na lista''' # vamos selecionar os 20 primeiros elementos da lista de 100 números
 
@@ -118,4 +124,9 @@ buscaSequencial(lista90, lista90[89])
 
 quicksort(lista100,0, len(lista100)-1) # colocando-a em ordem
 print(lista100)
+
+inicio = time.time() # grava o tempo inicial
 buscaSequencial(lista100, lista100[99])
+fim = time.time() # grava o tempo final
+tempo_total = fim - inicio # calcula o tempo total decorrido
+print(f"Tempo de execução: {tempo_total} segundos")

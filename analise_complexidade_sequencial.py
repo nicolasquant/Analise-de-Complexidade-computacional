@@ -63,6 +63,8 @@ for i in range (1,101): # criamos uma lista de 100 números
 rd.shuffle(lista100) # embaralha os elementos da nossa lista de 100 números
 
 ''' 10 elementos na lista'''
+
+print('LISTA COM 10 ELEMENTOS - PIOR CASO')
 lista10 = lista100[0:10]
 quicksort(lista10, 0, len(lista10)-1)
 print(lista10)
@@ -71,19 +73,26 @@ inicio = time.time() # grava o tempo inicial
 buscaSequencial(lista10, lista10[9]) # lembremos que o pior caso a ser tratado na busca sequencial ocorre quando o número a ser achado é o último
 fim = time.time() # grava o tempo final
 tempo_total = fim - inicio # calcula o tempo total decorrido
-print(f"Tempo de execução: {tempo_total} segundos")
+print(f"Tempo de execução: {tempo_total} segundos \n")
 
 
 '''50 elementos na lista'''
 
+print('LISTA COM 50 ELEMENTOS - PIOR CASO')
 lista50 = lista100[0:50] # criando a list com 20 elementos ( a partir da lista 100)
 quicksort(lista50,0, len(lista50)-1) # colocando-a em ordem
 print(lista50)
 buscaSequencial(lista50, lista50[49])
 
+inicio = time.time() # grava o tempo inicial
+buscaSequencial(lista50, lista50[49])
+fim = time.time() # grava o tempo final
+tempo_total = fim - inicio # calcula o tempo total decorrido
+print(f"Tempo de execução: {tempo_total} segundos \n")
 
 '''100 elementos na lista'''
 
+print('LISTA COM 100 ELEMENTOS - PIOR CASO')
 quicksort(lista100,0, len(lista100)-1) # colocando-a em ordem
 print(lista100)
 
@@ -99,7 +108,7 @@ xpoints = np.array([33,152,303])
 ypoints = np.array([10,50,100])
 plt.xlabel('número de iterações')
 plt.ylabel("Tamanho da nossa matriz")
-plt.title('Análise de complexidade da busca sequencial (3n +3)')
+plt.title('Análise de complexidade da busca sequencial - pior caso (3n + 3)')
 plt.plot(xpoints, ypoints, 'o:b') 
 plt.show()
 

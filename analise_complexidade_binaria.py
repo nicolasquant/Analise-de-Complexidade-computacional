@@ -1,5 +1,8 @@
 import random as rd
 import time
+import matplotlib.pyplot as plt 
+import numpy as np
+
 ''' quick-sort'''
 
 def quicksort(arr, left, right):
@@ -35,18 +38,21 @@ def partition(arr, left, right):
 def buscabinaria(lista,chave):
     pos_inic = 0
     pos_final = len(lista) - 1
-    iteracao = 0 # quantas vezes o while vai rodar
+    iteracao = 4 # 2 acima + break do while + return do final 
     
     while pos_inic <= pos_final:
         pos_mid = (pos_inic + pos_final)//2 # obs // divide nosso número e pega apenas a parte inteira
-        
+        iteracao += 1
         if chave == lista[pos_mid]:
+            iteracao += 2 # o return + o if q não seria contabilizado 
             return print ('Posição da chave ', chave, 'na lista:', pos_mid + 1, 'e foram realizadas', iteracao + 1, 'iterações')
         if chave < lista[pos_mid]:
             pos_final = pos_mid - 1  # -1 economiza processo
+            iteracao += 1
         if chave > lista[pos_mid]:
             pos_inic = pos_mid + 1 # +1 economiza uma casa a ser analizada (economiza processo)
-        iteracao += 1    
+            iteracao += 1
+        iteracao += 3 #estamos somando os 3 ifs    
     return print("A chave",chave, "não se encontra na lista", 'e foram realizadas', iteracao, 'iterações')
 
 
@@ -57,6 +63,8 @@ for i in range (1,101): # criamos uma lista de 100 números
 rd.shuffle(lista100) # embaralha os elementos da nossa lista de 100 números
 
 ''' 10 elementos na lista'''
+
+print('LISTA COM 10 ELEMENTOS - PIOR CASO')
 lista10 = lista100[0:10]
 quicksort(lista10, 0, len(lista10)-1)
 print(lista10)
@@ -67,71 +75,44 @@ fim = time.time() # grava o tempo final
 tempo_total = fim - inicio # calcula o tempo total decorrido
 print(f"Tempo de execução: {tempo_total} segundos")
 
-''' 20 elementos na lista''' # vamos selecionar os 20 primeiros elementos da lista de 100 números
-
-lista20 = lista100[0:20] # criando a list com 20 elementos ( a partir da lista 100)
-quicksort(lista20,0, len(lista20)-1) # colocando-a em ordem
-print(lista20)
-buscabinaria(lista20, lista20[19])
 
 '''30 elementos na lista'''
 
+print('\nLISTA COM 30 ELEMENTOS - PIOR CASO')
 lista30 = lista100[0:30] # criando a list com 20 elementos ( a partir da lista 100)
 quicksort(lista30,0, len(lista30)-1) # colocando-a em ordem
 print(lista30)
 buscabinaria(lista30, lista30[29])
 
-'''40 elementos na lista'''
-
-lista40 = lista100[0:40] # criando a list com 20 elementos ( a partir da lista 100)
-quicksort(lista40,0, len(lista40)-1) # colocando-a em ordem
-print(lista40)
-buscabinaria(lista40, lista40[39])
-
 
 '''50 elementos na lista'''
 
+print('\nLISTA COM 50 ELEMENTOS - PIOR CASO')
 lista50 = lista100[0:50] # criando a list com 20 elementos ( a partir da lista 100)
 quicksort(lista50,0, len(lista50)-1) # colocando-a em ordem
 print(lista50)
 buscabinaria(lista50, lista50[49])
 
-'''60 elementos na lista'''
-
-lista60 = lista100[0:60] # criando a list com 20 elementos ( a partir da lista 100)
-quicksort(lista60,0, len(lista60)-1) # colocando-a em ordem
-print(lista60)
-buscabinaria(lista60, lista60[59])
-
-'''70 elementos na lista'''
-
-lista70 = lista100[0:70] # criando a list com 20 elementos ( a partir da lista 100)
-quicksort(lista70,0, len(lista70)-1) # colocando-a em ordem
-print(lista70)
-buscabinaria(lista70, lista70[69])
-
-'''80 elementos na lista'''
-
-lista80 = lista100[0:80] # criando a list com 20 elementos ( a partir da lista 100)
-quicksort(lista80,0, len(lista80)-1) # colocando-a em ordem
-print(lista80)
-buscabinaria(lista80, lista80[79])
-
-'''90 elementos na lista'''
-
-lista90 = lista100[0:90] # criando a list com 20 elementos ( a partir da lista 100)
-quicksort(lista90,0, len(lista90)-1) # colocando-a em ordem
-print(lista90)
-buscabinaria(lista90, lista90[89])
 
 '''100 elementos na lista'''
 
+print('\nLISTA COM 100 ELEMENTOS - PIOR CASO')
 quicksort(lista100,0, len(lista100)-1) # colocando-a em ordem
 print(lista100)
-
 inicio = time.time() # grava o tempo inicial
 buscabinaria(lista100, lista100[99])
 fim = time.time() # grava o tempo final
 tempo_total = fim - inicio # calcula o tempo total decorrido
 print(f"Tempo de execução: {tempo_total} segundos")
+
+
+''' plotando o gráfico'''
+
+ypoints = np.array([23,28,33,38])
+xpoints = np.array([10,30,50,100])
+plt.ylabel('número de iterações')
+plt.xlabel("Tamanho da nossa matriz")
+plt.title('Análise de complexidade da busca BINÁRIA - pior caso')
+plt.plot(xpoints, ypoints, 'o:b') 
+plt.show()
 

@@ -38,22 +38,28 @@ def partition(arr, left, right):
 def buscabinaria(lista,chave):
     pos_inic = 0
     pos_final = len(lista) - 1
-    iteracao = 3 # 2 acima + break do while
-    # até aqui, temos 3 iterações constantes
+    iteracao = 2 # 2 acima 
+    # até aqui, temos 2 iterações constantes
     while pos_inic <= pos_final:
+        iteracao += 1
+        # no pior dos casos (primeiro elemento, ou último), teremos ((n/2)/2...) < 2. ou seja: n/2^x < 2 que é igual a n<2^(x+1)
+        # aqui, x é o número de whiles rodados e deve ser inteiro. Com isso, log2(n) = x ou log2(n) = x (x = iterações: e pegamos apenas sua parte inteira)
+        # com isso, nossa análise se dá por 6*log2(n) + 6 (a soma de 6 se dá pelas iterações constantes)
         pos_mid = (pos_inic + pos_final)//2 # obs // divide nosso número e pega apenas a parte inteira
         iteracao += 1
         if chave == lista[pos_mid]:
             iteracao += 2 # o return + o if q não seria contabilizado 
-            return print ('Posição da chave ', chave, 'na lista:', pos_mid + 1, 'e foram realizadas', iteracao + 1, 'iterações')
-        if chave < lista[pos_mid]:
+            return print ('Posição da chave ', chave, 'na lista:', pos_mid + 1, 'e foram realizadas', iteracao, 'iterações')
+        if chave < lista[pos_mid]: # note que no nosso código, nunca teremos esse if sendo exacutado junto do de baixo. Ou roda um, ou o outro
             pos_final = pos_mid - 1  # -1 economiza processo
             iteracao += 1
         if chave > lista[pos_mid]:
             pos_inic = pos_mid + 1 # +1 economiza uma casa a ser analizada (economiza processo)
             iteracao += 1
         iteracao += 3 #estamos somando os 3 ifs    
-    iteracao += 1
+        #a cada rodada de while, temos 6 iterações e na última (quando achamos o número), temos 4.
+        # vamos ignorar a situação onde não acharemos o número, onde teremos 6 iterações pra cada looping + 7 no último
+    iteracao += 1 # essa iteração só ocorrerá quando não encontrarmos o elemento desejado
     return print("A chave",chave, "não se encontra na lista", 'e foram realizadas', iteracao, 'iterações')
 
 
@@ -126,7 +132,7 @@ ypoints = np.array([22,27,32,37,47,52])
 xpoints = np.array([10,30,50,100,500,1000])
 plt.ylabel('número de iterações')
 plt.xlabel("Tamanho da nossa matriz")
-plt.title('Análise de complexidade da busca BINÁRIA - pior caso')
+plt.title('Análise de complexidade da busca BINÁRIA - pior caso - 6*int(log2(n)) + 6')
 plt.plot(xpoints, ypoints, 'o:b') 
 plt.show()
 

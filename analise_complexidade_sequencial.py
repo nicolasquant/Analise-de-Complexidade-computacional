@@ -82,7 +82,6 @@ print('LISTA COM 50 ELEMENTOS - PIOR CASO')
 lista50 = lista100[0:50] # criando a list com 20 elementos ( a partir da lista 100)
 quicksort(lista50,0, len(lista50)-1) # colocando-a em ordem
 print(lista50)
-buscaSequencial(lista50, lista50[49])
 
 inicio = time.time() # grava o tempo inicial
 buscaSequencial(lista50, lista50[49])

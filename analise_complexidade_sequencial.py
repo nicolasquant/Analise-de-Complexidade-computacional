@@ -1,5 +1,8 @@
 import time
 import random as rd
+import matplotlib.pyplot as plt
+import numpy as np
+
 
 def quicksort(arr, left, right):
     if left < right:
@@ -34,19 +37,26 @@ def partition(arr, left, right):
 
 
 def buscaSequencial(lista, chave): 
+    iteracoes = 2 # 1 iteração é a quantidade de vezes que executamos cada linha de comando (não estamos contando a execução da variavel 'iteracao')
+    # começamos com 2 iterações pra quebrar o laço for, ele deve ser rodado n+1 vezes. Além diso, já estamos consideradno o return.
     indice = 0
-    iteracoes = 0 # 1 iteração é a quantidade de vezes que executamos o comando for 
+    iteracoes += 1
     for número in lista: # número in lista converte cada elemento da matriz para um número (nesse caso já é)
+        iteracoes += 1
         if número == chave: # se o número achado é igual à chave, então achamos-o
-            return print("Posição da chave", chave, "na lista:", indice + 1, 'e foram realizadas', iteracoes + 1, 'buscas') # x+1 buscas pois o print do número achado está sendo executado antes do comando de aumentar x
+            iteracoes += 1 # temos que colocar essa iteração antes do return pois o return quebra o if (como um break)
+            return print("Posição da chave", chave, "na lista:", indice + 1, 'e foram realizadas', iteracoes + 1, 'iterações') # x+1 buscas pois o print do número achado está sendo executado antes do comando de aumentar x
+        iteracoes += 1
         indice = indice + 1
         iteracoes += 1
         
-    return print("A chave", chave, "não se encontra na lista", 'e foram realizadas', iteracoes , 'buscas') # x+1 pois o print
+    return print("A chave", chave, "não se encontra na lista", 'e foram realizadas', iteracoes , 'iterações')
+           
 
 
 
-# vamos criar uma lista com números alearórios de 0 a 100 (sem repetição)
+'''vamos criar uma lista com números alearórios de 0 a 100 (sem repetição)'''
+
 lista100 = []
 for i in range (1,101): # criamos uma lista de 100 números
     lista100.append(i)
@@ -63,27 +73,6 @@ fim = time.time() # grava o tempo final
 tempo_total = fim - inicio # calcula o tempo total decorrido
 print(f"Tempo de execução: {tempo_total} segundos")
 
-''' 20 elementos na lista''' # vamos selecionar os 20 primeiros elementos da lista de 100 números
-
-lista20 = lista100[0:20] # criando a list com 20 elementos ( a partir da lista 100)
-quicksort(lista20,0, len(lista20)-1) # colocando-a em ordem
-print(lista20)
-buscaSequencial(lista20, lista20[19])
-
-'''30 elementos na lista'''
-
-lista30 = lista100[0:30] # criando a list com 20 elementos ( a partir da lista 100)
-quicksort(lista30,0, len(lista30)-1) # colocando-a em ordem
-print(lista30)
-buscaSequencial(lista30, lista30[29])
-
-'''40 elementos na lista'''
-
-lista40 = lista100[0:40] # criando a list com 20 elementos ( a partir da lista 100)
-quicksort(lista40,0, len(lista40)-1) # colocando-a em ordem
-print(lista40)
-buscaSequencial(lista40, lista40[39])
-
 
 '''50 elementos na lista'''
 
@@ -92,33 +81,6 @@ quicksort(lista50,0, len(lista50)-1) # colocando-a em ordem
 print(lista50)
 buscaSequencial(lista50, lista50[49])
 
-'''60 elementos na lista'''
-
-lista60 = lista100[0:60] # criando a list com 20 elementos ( a partir da lista 100)
-quicksort(lista60,0, len(lista60)-1) # colocando-a em ordem
-print(lista60)
-buscaSequencial(lista60, lista60[59])
-
-'''70 elementos na lista'''
-
-lista70 = lista100[0:70] # criando a list com 20 elementos ( a partir da lista 100)
-quicksort(lista70,0, len(lista70)-1) # colocando-a em ordem
-print(lista70)
-buscaSequencial(lista70, lista70[69])
-
-'''80 elementos na lista'''
-
-lista80 = lista100[0:80] # criando a list com 20 elementos ( a partir da lista 100)
-quicksort(lista80,0, len(lista80)-1) # colocando-a em ordem
-print(lista80)
-buscaSequencial(lista80, lista80[79])
-
-'''90 elementos na lista'''
-
-lista90 = lista100[0:90] # criando a list com 20 elementos ( a partir da lista 100)
-quicksort(lista90,0, len(lista90)-1) # colocando-a em ordem
-print(lista90)
-buscaSequencial(lista90, lista90[89])
 
 '''100 elementos na lista'''
 
@@ -130,3 +92,14 @@ buscaSequencial(lista100, lista100[99])
 fim = time.time() # grava o tempo final
 tempo_total = fim - inicio # calcula o tempo total decorrido
 print(f"Tempo de execução: {tempo_total} segundos")
+
+''' plotando o gráfico de iterações em função do tamanho da nossa array'''
+
+xpoints = np.array([33,152,303])
+ypoints = np.array([10,50,100])
+plt.xlabel('número de iterações')
+plt.ylabel("Tamanho da nossa matriz")
+plt.title('Análise de complexidade da busca sequencial (3n +3)')
+plt.plot(xpoints, ypoints, 'o:b') 
+plt.show()
+

@@ -65,7 +65,7 @@ def buscabinaria(lista,chave):
 
 # vamos criar uma lista com números alearórios de 0 a 1000 (sem repetição)
 listona = []
-for i in range (1,1001): # criamos uma lista de 100 números
+for i in range (1,1001): # criamos uma lista de 1000 números
     listona.append(i)
 rd.shuffle(listona) # embaralha os elementos da nossa lista de 100 números
 
